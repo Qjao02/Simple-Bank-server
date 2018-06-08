@@ -6,4 +6,4 @@ class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cliente
         depth = 1   
-        fields = ['id','nome','endereco','telefone','conta']
+        fields = ['id','nome','endereco']

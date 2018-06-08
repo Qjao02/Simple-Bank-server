@@ -13,6 +13,8 @@ class ClienteView(APIView):
     serializer_class = ClienteSerializer
 
     def get(self, request, format = None):
-        serializer = self.serializer_class(Cliente, many = True)
+        
+        
+        serializer = self.serializer_class(Cliente.objects.raw('SELECT * FROM  cliente'), many = True)
             
         return Response(serializer.data)

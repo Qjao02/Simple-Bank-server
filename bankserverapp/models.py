@@ -1,5 +1,5 @@
 from django.db import models
-'''
+
 # Create your models here.
 
 class Telefone(models.Model) :
@@ -10,8 +10,7 @@ class Cliente(models.Model):
 
     nome = models.CharField(max_length = 50)
     endereco = models.CharField(max_length = 50)
-    telefone = models.ForeignKey(Telefone, on_delete = models.CASCADE)
-    
+    cadastroDatetime = models.DateField()     
     
 class Administrador(models.Model):
     login = models.CharField(max_length = 15)
@@ -192,7 +191,7 @@ class Conta:
 
 
 
-        
+  '''      
 
 
 

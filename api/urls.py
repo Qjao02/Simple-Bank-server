@@ -7,7 +7,7 @@ from bankserverapp.views import ClienteView
 
 helper_patterns = [
     
-    url('v1/Clientes/', ClienteView.as_view, name = 'Clientes'),
+    url('v1/Clientes/', ClienteView.as_view(), name = 'Clientes'),
 
 ]
 urlpatterns = helper_patterns

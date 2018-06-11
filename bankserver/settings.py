@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'bankserverapp',
     'api',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'bankserver.urls'
@@ -82,8 +86,8 @@ DATABASES = {
         'NAME': 'dbbanco',
         'USER': 'joao',
         'PASSWORD': 'joao',
-        'HOST': '192.168.137.125',
-        'PORT': '3306',
+        'HOST': 'mateusmt1.duckdns.org',
+        'PORT': ' 41221',
     }
 }
 
@@ -125,3 +129,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:4200'
+    )
+
+

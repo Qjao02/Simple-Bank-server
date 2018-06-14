@@ -7,11 +7,13 @@ class Telefone(models.Model) :
     telefone2 = models.CharField(max_length = 13)
 
 class Cliente(models.Model):
-
-    nome = models.CharField(max_length = 50)
-    endereco = models.CharField(max_length = 50)
-    cadastroDatetime = models.DateField()     
     
+    id = models.AutoField(primary_key=True)
+    nome = models.CharField(max_length = 50)
+    endereco = models.CharField(max_length = 100)
+    cadastroDatetime = models.DateField()     
+    origem_funcionario_id = models.IntegerField()
+
 class Administrador(models.Model):
     login = models.CharField(max_length = 15)
     pwd = models.CharField(max_length = 15)

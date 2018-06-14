@@ -84,10 +84,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'dbbanco',
-        'USER': 'joao',
-        'PASSWORD': 'joao',
-        'HOST': 'mateusmt1.duckdns.org',
-        'PORT': ' 41221',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': ' 3306',
     }
 }
 

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,21 +42,24 @@ INSTALLED_APPS = [
     'rest_framework',
     'bankserverapp',
     'api',
-    'corsheaders'
+  
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    
     
 ]
+
+
 
 ROOT_URLCONF = 'bankserver.urls'
 
@@ -131,10 +136,33 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-
-
 CORS_ORIGIN_WHITELIST = (
-    'localhost:4200'
-    )
+    'localhost:4200',
+    'google.com',
+    'hostname.example.com',
+    'localhost:8000',
+    '127.0.0.1:9000'
+)
+
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'POST',
+    'PUT',
+)
+CORS_ALLOW_HEADERS = (
+    'Access-Control-Allow-Origin',
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+)
+
+
 
 

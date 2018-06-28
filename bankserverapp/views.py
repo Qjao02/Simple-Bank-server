@@ -21,17 +21,37 @@ def dictfetchall(cursor):
         for row in cursor.fetchall()
     ]
 
-class ClienteListView(APIView):
-    print('called')
+class GetTotalClientes(APIView):
     serializer_class = ClienteSerializer
 
     def get(self, request,  format = None):
-        print('foiget')
         cursor = connection.cursor()
-        #response = dictfetchall(cursor)
-        serializer = self.serializer_class(Cliente.objects.raw('SELECT * FROM bankserverapp_cliente'), many = True)
+        total = cursor.execute('SELECT COUNT(*) FROM bankserverapp_cliente')
+        total = len(Cliente.objects.all())
+        responseDict = {
+            'total' : total
+        }
+        return Response(responseDict)
+
+
+
+class RelatoriosListView(APIView):
+    
+    
+    def get(self,request,format = None):
+        cursor = connection.cursor()
+        cursor.execute('select id, cpf, nome,rua_mora, cidade_mora, estado_mora  from bankserverapp_clientesfisicos')
+
+        return Response(dictfetchall(cursor))
 
         
+class ClienteListView(APIView):
+    serializer_class = ClienteSerializer
+
+    def get(self, request,  format = None):
+        cursor = connection.cursor()
+        #response = dictfetchall(cursor)
+        serializer = self.serializer_class(Cliente.objects.raw('SELECT * FROM bankserverapp_cliente'), many = True)        
         return Response(serializer.data)
 
     def post(self,request, format = None):
